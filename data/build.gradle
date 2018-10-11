@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -16,9 +17,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        buildTypes.each {
-            it.buildConfigField 'String', 'API_KEY', API_KEY
-        }
     }
 
 }
@@ -33,6 +31,9 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "androidx.core:core-ktx:$appcompat_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
 
     // Network
     implementation "com.google.code.gson:gson:$gson_version"
@@ -45,6 +46,9 @@ dependencies {
 
     // Koin
     implementation "org.koin:koin-core:$koin_version"
+
+    // Log
+    implementation "com.jakewharton.timber:timber:$timber_version"
 
     // Tests
     testImplementation "junit:junit:$test_junit_version"
