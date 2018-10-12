@@ -62,6 +62,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timber_version"
 
     // Tests
+
     testImplementation "junit:junit:$test_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$test_espresso_core_version"
     androidTestImplementation "androidx.test:rules:$test_rules_version"

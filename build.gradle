@@ -27,9 +27,9 @@ buildscript {
         test_junit_version = '4.12'
         test_mockito_version = '2.22.0'
         test_powermock_version = '1.7.4'
-        test_espresso_core_version = '3.1.0-alpha4'
+        test_espresso_core_version = '3.1.0-beta02'
         test_rules_version = '1.1.0-alpha4'
-        test_runner_version = '1.1.0-alpha4'
+        test_runner_version = '1.1.0-beta02'
     }
     repositories {
         google()

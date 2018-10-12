@@ -22,6 +22,7 @@ class DetailsActivity : AppCompatActivity() {
 
         bindInfos(item)
 
+        // Sry, not enough time to do properly this screen
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

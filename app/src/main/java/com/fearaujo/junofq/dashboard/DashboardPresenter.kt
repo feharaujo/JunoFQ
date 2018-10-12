@@ -4,7 +4,6 @@ import com.fearaujo.data.Repository
 import com.fearaujo.data.VenuesConfig
 import com.fearaujo.data.util.NETWORK_STATUS_MOBILE
 import com.fearaujo.data.util.NETWORK_STATUS_WIFI
-import com.fearaujo.data.util.NetworkUtil
 import com.fearaujo.mememaker.arch.BasePresenter
 
 class DashboardPresenter(override var view: DashboardContract.View?, private val repository: Repository) :
@@ -18,8 +17,8 @@ class DashboardPresenter(override var view: DashboardContract.View?, private val
             view?.updateItems(items)
         }
 
-        repository.subscribeNetworkStatus().observeForever {status ->
-            if(status == NETWORK_STATUS_MOBILE || status == NETWORK_STATUS_WIFI) {
+        repository.subscribeNetworkStatus().observeForever { status ->
+            if (status == NETWORK_STATUS_MOBILE || status == NETWORK_STATUS_WIFI) {
                 view?.hideNoConnectionWarning()
             } else {
                 view?.showNoConnectionWarning()
