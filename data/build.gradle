@@ -22,7 +22,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -39,6 +39,7 @@ dependencies {
     implementation "com.google.code.gson:gson:$gson_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     // RxKotlin
     implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
@@ -46,6 +47,7 @@ dependencies {
 
     // Koin
     implementation "org.koin:koin-core:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
 
     // Log
     implementation "com.jakewharton.timber:timber:$timber_version"
@@ -54,5 +56,5 @@ dependencies {
     testImplementation "junit:junit:$test_junit_version"
     testImplementation "org.powermock:powermock-module-junit4:$test_powermock_version"
     testImplementation "org.powermock:powermock-api-mockito2:$test_powermock_version"
-
+    implementation project(':model')
 }
