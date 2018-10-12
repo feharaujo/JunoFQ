@@ -1,8 +1,9 @@
 package com.fearaujo.junofq
 
 import android.app.Application
-import com.fearaujo.data.di.Params
+import com.fearaujo.data.di.DataParams
 import com.fearaujo.data.di.repositoryModule
+import com.fearaujo.junofq.di.appModule
 import org.koin.android.ext.android.startKoin
 import timber.log.Timber
 import timber.log.Timber.DebugTree
@@ -22,9 +23,9 @@ class AppApplication : Application() {
      * Dependency injection starts after obtain the oAuthToken
      */
     fun initKoinInjection(oauthToken: String) {
-        val properties = mapOf(Params.OAUTH_TOKEN to oauthToken)
+        val properties = mapOf(DataParams.OAUTH_TOKEN to oauthToken)
         startKoin(this, modules = listOf(
-                repositoryModule
+                repositoryModule, appModule
         ), extraProperties = properties)
     }
 

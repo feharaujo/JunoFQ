@@ -1,25 +1,37 @@
 package com.fearaujo.model
 
 
-import androidx.room.*
+import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class VenuesResult(@SerializedName("meta")
                         var meta: Meta?,
                         @SerializedName("response")
-                        var response: ResponseList?)
+                        var response: ResponseList?) : Parcelable
 
+@Parcelize
 data class ResponseList(
         @SerializedName("venues")
-        var venues: List<Venue>?)
+        var venues: List<Venue>?) : Parcelable
 
+@Parcelize
 data class Meta(@SerializedName("code")
                 var code: Int?,
                 @SerializedName("requestId")
-                var requestId: String?)
+                var requestId: String?) : Parcelable
 
+@Parcelize
 @Entity
 data class Venue(
+        @Embedded
+        @SerializedName("contact")
+        var contact: Contact?,
         @SerializedName("dislike")
         var dislike: Boolean?,
         @SerializedName("shortUrl")
@@ -42,23 +54,23 @@ data class Venue(
         var name: String?,
         @Embedded(prefix = "loc_") @SerializedName("location")
         var location: Location?
-)
+) : Parcelable
 
-
+@Parcelize
 data class Response(@SerializedName("venue")
-                    var venue: Venue?)
+                    var venue: Venue?) : Parcelable
 
-
+@Parcelize
 data class Likes(@SerializedName("count")
-                 var count: Int?)
+                 var count: Int?) : Parcelable
 
-
+@Parcelize
 data class VenueDetails(@SerializedName("meta")
                         var meta: Meta?,
                         @SerializedName("response")
-                        var response: Response?)
+                        var response: Response?) : Parcelable
 
-
+@Parcelize
 data class Location(@SerializedName("cc")
                     var cc: String?,
                     @SerializedName("country")
@@ -73,6 +85,12 @@ data class Location(@SerializedName("cc")
                     @SerializedName("state")
                     var state: String?,
                     @SerializedName("lat")
-                    var lat: Double?)
+                    var lat: Double?) : Parcelable
+
+@Parcelize
+data class Contact(@SerializedName("phone")
+                   val phone: String?,
+                   @SerializedName("formattedPhone")
+                   val formattedPhone: String?) : Parcelable
 
 

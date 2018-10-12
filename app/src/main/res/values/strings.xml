@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">JunoFQ</string>
+    <string name="label_address">Address</string>
+    <string name="label_contact">Contact</string>
 </resources>

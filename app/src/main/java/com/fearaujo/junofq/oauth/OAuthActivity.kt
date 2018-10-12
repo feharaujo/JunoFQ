@@ -8,7 +8,6 @@ import com.fearaujo.junofq.BuildConfig
 import com.fearaujo.junofq.dashboard.DashboardActivity
 import com.foursquare.android.nativeoauth.FoursquareOAuth
 import org.jetbrains.anko.intentFor
-import timber.log.Timber
 
 const val REQUEST_CODE_FSQ_CONNECT = 921
 const val REQUEST_CODE_FSQ_TOKEN_EXCHANGE = 922
@@ -22,6 +21,16 @@ class OAuthActivity : AppCompatActivity() {
 
         val intent = FoursquareOAuth.getConnectIntent(this, CLIENT_ID)
         startActivityForResult(intent, REQUEST_CODE_FSQ_CONNECT)
+
+        // Just to test, not necessary open foresquore auth
+        //openDirectWithOauthToken("")
+    }
+
+    private fun openDirectWithOauthToken(token: String) {
+        (application as AppApplication).initKoinInjection(token)
+
+        startActivity(intentFor<DashboardActivity>())
+        finish()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -34,9 +43,10 @@ class OAuthActivity : AppCompatActivity() {
 
             REQUEST_CODE_FSQ_TOKEN_EXCHANGE -> {
                 val tokenResponse = FoursquareOAuth.getTokenFromResult(resultCode, data)
-                Timber.v("Token: ${tokenResponse.accessToken}")
 
-                (application as AppApplication).initKoinInjection(tokenResponse.accessToken)
+                var token = ""
+                tokenResponse.accessToken?.let { token = it }
+                (application as AppApplication).initKoinInjection(token)
 
                 startActivity(intentFor<DashboardActivity>())
                 finish()
