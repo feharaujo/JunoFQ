@@ -17,7 +17,7 @@ import timber.log.Timber
 import java.util.concurrent.TimeUnit.MILLISECONDS
 
 object VenuesConfig {
-    const val LIMIT_DEFAULT = 1
+    const val LIMIT_DEFAULT = 15
     const val DISTANCE_DEFAULT = 1000
 }
 
